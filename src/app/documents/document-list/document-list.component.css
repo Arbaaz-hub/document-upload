@@ -1,0 +1,13 @@
+table {
+  width: 100%;
+}
+
+.no-record {
+  text-align: center;
+  font-size: larger;
+  font-weight: 600;
+}
+
+.fore-color {
+  color: red;
+}

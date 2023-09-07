@@ -1,0 +1,76 @@
+/* You can add global styles to this file, and also import other style files */
+.c-pointer {
+  cursor: pointer;
+}
+
+.load-center {
+  text-align: -webkit-center;
+}
+
+mat-form-field,
+textarea {
+  width: 100%;
+}
+
+mat-spinner {
+  margin: auto;
+}
+
+input[type="file"] {
+  visibility: hidden;
+}
+
+.image-preview {
+  height: 5rem;
+  margin: 1rem 0;
+}
+
+.image-preview img {
+  height: 100%;
+}
+
+/* document-create.component.css */
+
+/* Define custom colors */
+.custom-primary-color {
+  color: #1976D2;
+  /* Change to your primary color */
+}
+
+.custom-accent-color {
+  color: #FF9800;
+  /* Change to your accent color */
+}
+
+.custom-background-color {
+  background-color: #F5F5F5;
+  /* Change to your background color */
+}
+
+/* Style the card */
+.custom-card {
+  border: 1px solid #ccc;
+  padding: 16px;
+  margin: 16px 0px 16px;
+  max-height: 400px;
+  /* Adjust the maximum height as needed */
+  overflow-y: auto;
+  /* Add a scrollbar if the content overflows */
+}
+
+/* Style the file info */
+.file-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.color-red {
+  color: red;
+}
+
+.f-validate {
+  font-size: 75%;
+  color: red;
+}

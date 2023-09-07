@@ -1,0 +1,30 @@
+<h4>Documents List</h4>
+<h6 style="margin-top: 30px;">Total Files: {{documentsList?.length}}</h6>
+
+<div class="load-center" *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+</div>
+
+<table class="table" *ngIf="!isLoading">
+  <thead>
+    <tr>
+      <th scope="col">File Number</th>
+      <th scope="col">Title</th>
+      <th scope="col">Created At</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="documentsList.length > 0">
+    <tr *ngFor="let list of documentsList; let i = index">
+      <th scope="row">{{ i + 1 }}</th>
+      <td class="c-pointer" [routerLink]="['/detail', list?.id]"> {{ list?.title}}</td>
+      <td>{{ list?.createdAt | date :'short' }}</td>
+      <td>
+        <span class="material-symbols-outlined fore-color c-pointer" (click)="deleteDocument(list?.id)">
+          delete
+        </span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="no-record" *ngIf="documentsList?.length === 0 && !isLoading">No Records Found!</div>

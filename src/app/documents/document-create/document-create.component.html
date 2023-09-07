@@ -1,0 +1,43 @@
+<div class="load-center" *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+</div>
+
+<h4 *ngIf="!isLoading">Create Document</h4>
+<mat-card *ngIf="!isLoading">
+  <form [formGroup]="form" (submit)="onSaveDocuments()" *ngIf="!isLoading">
+    <mat-form-field>
+      <input matInput type="text" formControlName="title" placeholder="Document Title">
+      <mat-error
+        *ngIf="form.get('title')?.hasError('required') && (form.get('title')?.touched || form.get('title')?.dirty)">Please
+        enter a document title.</mat-error>
+    </mat-form-field>
+    <div>
+      <button mat-stroked-button type="button" (click)="filePicker.click()" [disabled]="fileData.length === 3">Pick
+        File</button>
+      <input type="file" #filePicker (change)="onImagePicked($event)" multiple>
+    </div>
+    <mat-error class="f-validate"
+      *ngIf="fileData.length === 0 && (form.get('fileUrls')?.hasError('required') && (form.get('fileUrls')?.touched || form.get('fileUrls')?.dirty))">Please
+      enter pdf file.</mat-error>
+    <mat-error class="f-validate" *ngIf="showFileLimitError">Only 3 files are allowed.</mat-error>
+    <mat-error class="f-validate" *ngIf="showFileTypeError">Only pdf allowed.</mat-error>
+    <mat-error class="f-validate" *ngIf="showFileSizeError"> File size exceeds the limit (3MB).</mat-error>
+    <div *ngIf="fileData && fileData.length > 0" class="file-list">
+      <mat-card *ngFor="let file of fileData" class="custom-card">
+        <mat-card-content class="file-info">
+          <p class="file-text custom-primary-color">{{ file.name }}</p>
+          <p class="color-red c-pointer" (click)="removeFile(file)">
+            <span class="material-symbols-outlined">
+              close
+            </span>
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <mat-form-field>
+      <textarea matInput rows="4" formControlName="content" placeholder="Document Description"></textarea>
+      <mat-error *ngIf="form.get('content').invalid">Please enter a document description.</mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="accent" type="submit">Save</button>
+  </form>
+</mat-card>

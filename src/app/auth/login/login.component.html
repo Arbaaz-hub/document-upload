@@ -1,0 +1,27 @@
+<h4>Log in to your FileFlex account</h4>
+<div class="alert alert-danger" *ngIf="showError">{{errorMessage}}</div>
+
+<mat-card>
+  <form [formGroup]="form" (submit)="onLogin()" *ngIf="!isLoading">
+    <mat-form-field>
+      <input matInput name="email" formControlName="email" type="email" placeholder="E-Mail">
+      <mat-error
+        *ngIf="form.get('email')?.hasError('required') && (form.get('email')?.touched || form.get('email')?.dirty)">Email
+        is required.</mat-error>
+      <mat-error *ngIf="!form.get('email')?.hasError('required') && form.get('email')?.hasError('pattern')">Please enter
+        a valid email.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input [type]="hidePassword ? 'password' : 'text'" name="password" formControlName="password" matInput
+        placeholder="Password">
+      <span class="material-symbols-outlined" matSuffix (click)="togglePasswordVisibility()">
+        {{ hidePassword ? 'visibility_off' : 'visibility' }} <!-- Show/hide password icon -->
+      </span>
+      <mat-error
+        *ngIf="form.get('password')?.hasError('required') && (form.get('password')?.touched || form.get('password')?.dirty)">Password
+        is required.</mat-error>
+
+    </mat-form-field>
+    <button mat-raised-button color="accent" type="submit" *ngIf="!isLoading">Login</button>
+  </form>
+</mat-card>

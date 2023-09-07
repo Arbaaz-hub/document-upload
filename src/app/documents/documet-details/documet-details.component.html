@@ -1,0 +1,42 @@
+<h4 style="margin-left: 12px;">Documents Details</h4>
+<div class="load-center" *ngIf="isLoading">
+    <mat-spinner></mat-spinner>
+</div>
+<ng-container *ngIf="!isLoading">
+    <div class="container">
+        <mat-card class="file-card">
+            <!-- Left side: Image -->
+            <div class="image-container">
+                <img src="./assets/pdf.png" alt="File Image" class="file-image" />
+            </div>
+
+            <!-- Right side: File details -->
+            <div class="file-details">
+                <!-- Title -->
+                <h2 class="file-title">{{documentData?.title}}</h2>
+
+                <!-- Description -->
+                <p class="file-description">{{documentData?.content }}.</p>
+            </div>
+        </mat-card>
+
+        <!-- Created Date and URLs -->
+        <div class="created-date-urls">
+            <!-- Created Date as a list -->
+            <div class="f1">
+                <p class="created-date-label ">Created Date:</p> <span class="d-m1">{{ documentData?.createdAt | date
+                    :'short' }}</span>
+            </div>
+        </div>
+    </div>
+    <p class="file-urls-label" style="margin-left: 12px;">Files:</p>
+    <div style="margin-left: 12px;" class="file-list f-b1" *ngFor="let link of documentData?.fileUrls">
+        <a [href]="link.url" style="text-decoration: none;" target="_blank">
+            <mat-card class="custom-card">
+                <mat-card-content class="file-info">
+                    <p class="file-text custom-primary-color">{{ link.name }}</p>
+                </mat-card-content>
+            </mat-card>
+        </a>
+    </div>
+</ng-container>
